@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundEffect : MonoBehaviour
-{
+{ 
+    //効果音用スクリプト
     AudioSource audioSource;
     public AudioClip[] SE;
     public static bool[] SETrigger;

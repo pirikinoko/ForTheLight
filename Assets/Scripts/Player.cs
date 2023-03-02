@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
     }
     void GetHit()
     {
-        if (colorChanging)
+        if (colorChanging)　　　//敵に当たってしまうとプレイヤーが赤色に
         {
             colorChangeDuration -= Time.deltaTime;
             if(colorChangeDuration < 0)
@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
 
     }
 
-    float FillDifference(float num1, float num2, float fillRate)
+    float FillDifference(float num1, float num2, float fillRate)　　//差を縮める関数
     {
         float sign;
         if (Mathf.Abs(num2 - num1) > 0f)
@@ -192,10 +192,9 @@ public class Player : MonoBehaviour
         return num1;
     }
 
-    void Attack()
+    void Attack()　//攻撃処理
     {
-        Vector2 colPos = this.transform.position;
-        attackCol.gameObject.SetActive(true);
+        Vector2 colPos = this.transform.position;　　
         if (Input.GetMouseButtonDown(0) && !(whileAtack))
         {          
             walkAnim = false;
@@ -208,7 +207,7 @@ public class Player : MonoBehaviour
         if (whileAtack)
         {
             attackDuration -= Time.deltaTime;
-            maxSpeed = 1.5f;
+            maxSpeed = 1.5f;   //攻撃時、移動速度減少
             jumpAnim = false;
         }
         else { maxSpeed = 3f; }
@@ -220,7 +219,7 @@ public class Player : MonoBehaviour
             attackDuration = 1.2f;
         }
 
-        if(0.15f < attackDuration && attackDuration < 0.43f)
+        if(0.15f < attackDuration && attackDuration < 0.43f)   //攻撃の当たり判定ON
         {
             attackCol.gameObject.SetActive(true);  
         }
@@ -231,15 +230,13 @@ public class Player : MonoBehaviour
 
     }
 
-    void Jump()
+    void Jump()　　//ジャンプ
     {
-        GameObject legCol = GameObject.Find("legCol");
+        GameObject legCol = GameObject.Find("legCol");　　//足の当たり判定
         Vector2 pos = this.transform.position;
         pos.y -= 0.8f;
-        legCol.transform.position = pos;
-        //ジャンプ
-        //キーが押されたとき&&地面にいるとき
-        if (Input.GetKeyDown(KeyCode.Space) && onFlore && legOnFlore)
+        legCol.transform.position = pos;       
+        if (Input.GetKeyDown(KeyCode.Space) && legOnFlore) //キーが押されたとき&&地面にいるとき
         {
             playerrb.velocity = new Vector2(0f, jumpForce);
             walkAnim = false;

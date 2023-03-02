@@ -32,19 +32,20 @@ public class CameraControl : MonoBehaviour
 
     void CameraPosition()
     {
-        if (gamesystem.startFlag && count == 0)
+        if (gamesystem.startFlag && count == 0)　//スタート時にプレイヤーの位置をアップで強調
         {
-            cameraPos = GameObject.Find("Player").transform.position;
+            cameraPos = GameObject.Find("Player").transform.position;　
             camera.orthographicSize = 3;
             count++;
         }
-        if (!(gamesystem.inPlay))
-        {
+        if (!(gamesystem.inPlay))　　　//プレイ時はカメラを引いて全体を写す
+        {　
             camera.orthographicSize = FillDifference(camera.orthographicSize, 6, 3f);
             cameraPos.x = FillDifference(cameraPos.x, defaultPos.x, 4f);
             cameraPos.y = FillDifference(cameraPos.y, defaultPos.y, 3f);
         }     
-        if (cameraTrigger.trigger == true)    //プレイヤーがtriggerオブジェクトに触れたらカメラの移動
+
+        if (cameraTrigger.trigger == true)    //プレイヤーが画面右端オブジェクトに触れたらカメラが右に移動
         {
             cameraPos.x += 20;         
             cameraTrigger.trigger = false;
@@ -53,7 +54,7 @@ public class CameraControl : MonoBehaviour
         this.transform.position = cameraPos;
     }
 
-    float FillDifference(float num1, float num2, float fillRate)
+    float FillDifference(float num1, float num2, float fillRate)　//二つの数値を近づける関数
     {
         float sign;
         if(Mathf.Abs(num2 - num1) > 0.01)

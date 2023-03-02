@@ -18,7 +18,7 @@ public class GameSystem : MonoBehaviour
     int numberOfEnemyLimit;
     [SerializeField] Text scoreText, finalScoreText, finalBrightnessText, highScoreText;　//スコア＆タイムテキスト
     //ゲームオブジェクト,テキスト
-    private GameObject pointLight, spriteLight, inPlayUI;                 //照明,スコア,タイムのゲームオブジェクト,カウントダウンテキスト,月の明るさゲージ
+    private GameObject pointLight, spriteLight, inPlayUI;             //照明,スコア,タイムのゲームオブジェクト,カウントダウンテキスト,月の明るさゲージ
     public GameObject[] moonGage;
     public GameObject startPanel, resultPanel;                  //パネル
     GameObject[] allObjects;
@@ -145,7 +145,7 @@ public class GameSystem : MonoBehaviour
             pointlight2d.intensity = brightness;
             spritelight2d.intensity = brightness * 5;
 
-            if (brightness < 0)
+            if (brightness < 0)　　//明るさ0でゲームオーバー
             {
                 brightness = 0;
                 inPlay = false;
@@ -155,7 +155,7 @@ public class GameSystem : MonoBehaviour
             int maxGage = 10;
             flored = System.Math.Min(flored, maxGage);
 
-            for (int i = 0; i <= flored; i++)
+            for (int i = 0; i <= flored; i++)　　　//ゲージ増減
             {
                 moonGage[i].gameObject.SetActive(true);
             }

@@ -36,8 +36,8 @@ public class Enemy : MonoBehaviour
         //一秒ごとに確率でキャラ反転＆時間経過で反転率UP
         elapsedTime1 += Time.deltaTime;   //時間計測
         elapsedTime2 += Time.deltaTime;
-        float prob1 = 10 + elapsedTime1 * 5; //時間経過で確立上昇
-        float prob2 = 10 + elapsedTime2 * 5;　//時間経過で確立上昇
+        float prob1 = 10 + elapsedTime1 * 5; //時間経過で確立上昇(反転用)
+        float prob2 = 10 + elapsedTime2 * 5;　//時間経過で確立上昇(ジャンプ用)
         if (elapsedTime1 > turnSpan)
         {
             rndFloat = Random.Range(-5, 10);
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void Jump()
+    void Jump()　//ジャンプ
     {
         if (onSurface)
         {
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
             onSurface = false;
         }       
     }
-    void Turn()
+    void Turn()　//反転
     {
         speed *= -1;
         Vector2 characterDirection = gameObject.transform.localScale;

@@ -10,12 +10,12 @@ public class ButtonClick : MonoBehaviour
     {
         gamesystem = GameObject.Find("Scripts").GetComponent<GameSystem>();
     }
-    public void StartGame()
+    public void StartGame() //スタートボタン
     {
         gamesystem.startFlag = true;
     }
     public void ResetGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main");　//リスタートボタン
     }
 }
