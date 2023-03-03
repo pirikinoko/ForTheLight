@@ -32,7 +32,7 @@ public class GameSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         num = 2;
         startFlag = false;
         inPlay = false;
@@ -71,9 +71,10 @@ public class GameSystem : MonoBehaviour
         }
 
         //ハイスコアロード
-        highScore = PlayerPrefs.GetFloat("highScore", 0);
+         highScore = PlayerPrefs.GetFloat("highScore", 0);
         int highScoreCut = (int)highScore;
         highScoreText.text = String.Format("HighScore: " + highScoreCut);
+        Debug.Log(highScore);   
     }
 
     // Update is called once per frame
@@ -168,7 +169,7 @@ public class GameSystem : MonoBehaviour
         }
     }
 
-    IEnumerator ShowResult()
+    IEnumerator ShowResult()  //リザルト表示
     {
         if (!(startFlag) && !(inPlay) && isOver)
         {
@@ -218,6 +219,15 @@ public class GameSystem : MonoBehaviour
             SoundEffect.SETrigger[0] = true;
         }
     }
+　   void GainNumber(float target, float goal)
+    {
+        target += goal / 500;
+        if (target > goal)
+        {
+            target = score;
+            SoundEffect.SETrigger[0] = true;
+        }
+    }
     void BonusScore()
     {
         finalScoreText.text = String.Format("Score: " + "{0:####}", finalScore);
@@ -227,7 +237,7 @@ public class GameSystem : MonoBehaviour
             finalScore = bonusScore;
             SoundEffect.SETrigger[5] = true;
             isOver = false;
-            if(finalScore > highScore)
+            if(finalScore >= highScore)
             {
                 highScore = finalScore;
                 PlayerPrefs.SetFloat("highScore", highScore);
