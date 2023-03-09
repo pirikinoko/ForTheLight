@@ -127,7 +127,7 @@ public class GameSystem : MonoBehaviour
         if (startTime < 0)//スコア＆タイム表示
         {
             player.enabled = true;
-            if (inPlay)//
+            if (inPlay)
             {
                 time += Time.deltaTime;
             }
@@ -219,15 +219,7 @@ public class GameSystem : MonoBehaviour
             SoundEffect.SETrigger[0] = true;
         }
     }
-　   void GainNumber(float target, float goal)
-    {
-        target += goal / 500;
-        if (target > goal)
-        {
-            target = score;
-            SoundEffect.SETrigger[0] = true;
-        }
-    }
+　
     void BonusScore()
     {
         finalScoreText.text = String.Format("Score: " + "{0:####}", finalScore);
